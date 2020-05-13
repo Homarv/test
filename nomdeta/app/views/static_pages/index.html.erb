@@ -1,32 +1,63 @@
-<h1>StaticPages#index</h1>
-<p>Find me in app/views/static_pages/index.html.erb</p>
+<div class="jumbotron" style="background-image: url(https://i2.wp.com/revrse.fr/wp-content/uploads/2017/02/public-concert.jpg?fit=2000%2C1200&ssl=1);
+ background-size: 100%;">
 
-<ul>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    </li>
+    <div class= "text-center text-white text-bold">
+        <h1>Home Page</h1>
+        <h5>Retrouve les meilleurs évènements du Covid 19</h5>
+        
+        
+        
+        <ul>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            </li>
+        
+            <li>
+              Voici ton email : <%= current_user.email %>
+            </li>
+        
+            <li>
+              <%= link_to "Secret page", static_pages_secret_path,class: 'btn btn-sm btn-dark my-1 mr-2' %>
+            </li>
+        
+            <li>
+              <%= link_to "Edit email / password", edit_user_registration_path,class: 'btn btn-sm btn-dark my-1 mr-2' %>
+            </li>
+        
+          <% else %>
+            <li>    
+              <%= link_to "Sign in", new_user_session_path,class: 'btn btn-sm btn-secondary my-1 mr-2'  %>
+            </li>
+        
+            <li>
+              <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-sm btn-dark my-1 mr-2' %>
+            </li>
+        
+          <% end %>
+        </ul>
+    </div>
+</div>
 
-    <li>
-      Voici ton email : <%= current_user.email %>
-    </li>
-
-    <li>
-      <%= link_to "Secret page", static_pages_secret_path %>
-    </li>
-
-    <li>
-      <%= link_to "Edit email / password", edit_user_registration_path %>
-    </li>
-
-  <% else %>
-    <li>    
-      <%= link_to "Sign in", new_user_session_path %>
-    </li>
-
-    <li>
-      <%= link_to "Sign up", new_user_registration_path %>
-    </li>
-
-  <% end %>
-</ul>
+<% @event.each do |event| %>
+  <div class="container ">
+   
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal"><%= event.title %> </h4>
+          </div>
+          <div class="card-body">
+            
+            <div class="list-unstyled mt-3 mb-4">
+              <li> 
+                Description: <%= event.description %></br>
+                Date: <%= event.start_date %></br>
+                Ville: <%= event.location %></br>
+                Prix: <%= event.price %> euros </br>
+              </li>
+            </div>
+            <button type="button" class="btn btn-lg btn-block btn-dark"><%= link_to "Voir l'événement" %> </button>
+          </div>  
+        </div>
+    <%end%>

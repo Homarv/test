@@ -20,10 +20,10 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="<%=static_pages_index_path%>">Home <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="<%=%>">Event</a>
-          <a class="nav-item nav-link" href="<%=user_session_path %>">Mon profil</a>
+          <a class="nav-item nav-link" href="<%= %>">Mon profil</a>
           <a class="nav-item nav-link" href="<%=new_user_registration_path %>">S'incrire</a>
           <a class="nav-item nav-link" href="<%=new_user_session_path %>">Se connecter</a>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-danger my-1 mr-2', role:'button' %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-secondary my-1 mr-2', role:'button' %>
         </div>
       </div>
     </nav>
